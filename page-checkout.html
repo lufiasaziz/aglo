@@ -148,25 +148,17 @@
           <div class="card-body">
             <div class="card-body checkout-form">
               <h6 class="mb-3">Enter your billing details</h6>
-              <form action="page-via.html">
-                <div class="form-group">
-                  <input class="form-control mb-3" type="text" placeholder="nama penerima">
-                </div>
-                <div class="form-group">
-                  <input class="form-control mb-3" type="number" placeholder="no-hp">
-                </div>
-                <div class="form-group">
-                  <input class="form-control mb-3" type="number" placeholder="kode pos">
-                </div>
+              <form class="checkout_form" method="post" name="form" id="submit">
+                  <input class="form-control mb-3" type="text" placeholder="nama penerima" name="nama" id="nama">
+               
+                  <input class="form-control mb-3" type="number" placeholder="no-hp" name="number" id="number">
+               
+                  <input class="form-control mb-3" type="number" placeholder="kode pos" name="kodepos" id="kodepos">
+               
+                  <input class="form-control mb-3" type="text" placeholder="Alamat Lengkap" name="alamat" id="alamat">
                 
-                <div class="form-group">
-                  <input class="form-control mb-3" type="text" placeholder="Alamat Lengkap">
-                </div>
-                
-                <div class="form-group">
                   <textarea class="form-control mb-3" id="notes" name="notes" cols="30" rows="10" placeholder="pesan"></textarea>
-                </div>
-                
+
                 <button class="btn btn-primary mt-3 w-100" type="submit">Check-out</button>
               </form>
             </div>
@@ -219,5 +211,62 @@
     <script src="js/default/clipboard.js"></script>
     <!-- PWA-->
     <script src="js/pwa.js"></script>
+    <script>
+      var nama = document.querySelector('#nama');
+      var number = document.querySelector('#number');
+      var kodepos = document.querySelector('#kodepos');
+      var alamat = document.querySelector('#alamat');
+
+      var error_msg = document.querySelector(".error_msg");
+
+      $('#submit').submit(function (e) {
+        e.preventDefault();
+
+        if (nama.value.length < 2) {
+            nama.style.border = "1px solid #f74040";
+            return false;
+          }
+
+        if (number.value.length < 2) {
+            number.style.border = "1px solid #f74040";
+            return false;
+          }
+
+        if (kodepos.value.length < 2) {
+            kodepos.style.border = "1px solid #f74040";
+            return false;
+          }
+
+        if (alamat.value.length < 2) {
+            alamat.style.border = "1px solid #f74040";
+            return false;
+          }
+
+        location.replace('page-via.html');
+      });
+
+      var input_field = document.querySelectorAll("input");
+
+      input_field.forEach(function (input_item){
+        input_item.addEventListener("input", function() {
+          
+          if (nama.value.length > 2) {
+              nama.style.border = "1px solid #1dbf73";
+          }
+
+          if (number.value.length > 2) {
+              number.style.border = "1px solid #1dbf73";
+          }
+      
+          if (kodepos.value.length > 2) {
+              kodepos.style.border = "1px solid #1dbf73";
+          }
+          
+          if (alamat.value.length > 2) {
+              alamat.style.border = "1px solid #1dbf73";
+          }
+        })
+      })
+    </script>
   </body>
 </html>
